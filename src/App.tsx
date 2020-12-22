@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const Time = styled.div`
+  font-size: min(25vw, 100vh);
+  text-align: center;
+  line-height: 100vh;
+`;
+
+const getTimeString = () => {
+  return new Date().toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
+
+const App = () => {
+  const [timeString, setTimeString] = useState(getTimeString());
+  const initializeTime = () => {
+    setTimeString(getTimeString());
+    setTimeout(initializeTime, 1000);
+  };
+  useEffect(initializeTime);
+  return <Time>{timeString}</Time>;
+};
 
 export default App;
