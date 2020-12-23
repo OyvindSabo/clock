@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Clock from './Clock';
 
-const getWakeLock = async () => {
+const getWakeLockSentinel = async () => {
   try {
     const wakeLockSentinel = await navigator.wakeLock.request('screen');
     wakeLockSentinel.addEventListener('release', () => {
@@ -21,26 +21,37 @@ const doReleaseWakeLock = (wakeLockSentinel: WakeLockSentinel | null) => () => {
   wakeLockSentinel.release();
 };
 
+const doAddVisibilityChangeListener = (
+  handleVisibilityChange: VoidFunction
+) => {
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+};
+
+const doRemoveVisibilityChangeListener = (
+  handleVisibilityChange: VoidFunction
+) => () => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
+};
+
 const App = () => {
   const [
     wakeLockSentinel,
     setWakeLockSentinel,
   ] = useState<WakeLockSentinel | null>(null);
 
+  const handleVisibilityChange = () => {
+    if (document.visibilityState !== 'visible') return;
+    getWakeLockSentinel().then(setWakeLockSentinel);
+  };
+
   useEffect(() => {
-    getWakeLock().then(setWakeLockSentinel);
+    getWakeLockSentinel().then(setWakeLockSentinel);
     return doReleaseWakeLock(wakeLockSentinel);
   }, []);
 
   useEffect(() => {
-    const handleVisibilityChange = async () => {
-      if (document.visibilityState !== 'visible') return;
-      getWakeLock().then(setWakeLockSentinel);
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
+    doAddVisibilityChangeListener(handleVisibilityChange);
+    return doRemoveVisibilityChangeListener(handleVisibilityChange);
   }, []);
 
   return <Clock />;
