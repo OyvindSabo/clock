@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
+import React, { useCallback, useEffect, useState } from 'react';
 import Clock from './Clock';
+import { useOnce } from './utils';
+import './App.css';
 
 const getWakeLockSentinel = async () => {
   try {
@@ -44,15 +45,15 @@ const App = () => {
     getWakeLockSentinel().then(setWakeLockSentinel);
   };
 
-  useEffect(() => {
+  useOnce(() => {
     getWakeLockSentinel().then(setWakeLockSentinel);
     return doReleaseWakeLock(wakeLockSentinel);
-  }, []);
+  });
 
-  useEffect(() => {
+  useOnce(() => {
     doAddVisibilityChangeListener(handleVisibilityChange);
     return doRemoveVisibilityChangeListener(handleVisibilityChange);
-  }, []);
+  });
 
   return <Clock />;
 };
