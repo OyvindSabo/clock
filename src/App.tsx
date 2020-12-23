@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
+import Clock from './Clock';
 
-const Time = styled.div`
-  font-size: min(25vw, 100vh);
-  text-align: center;
-  line-height: 100vh;
-`;
-
-const getTimeString = () => {
-  return new Date().toLocaleTimeString('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+const getWakeLock = async () => {
+  try {
+    const wakeLock = await (navigator as any).wakeLock.request('screen');
+    wakeLock.addEventListener('release', () => {
+      console.log('Screen Wake Lock released:', wakeLock.released);
+    });
+    console.log('Screen Wake Lock released:', wakeLock.released);
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+    return null;
+  }
 };
 
 const App = () => {
-  const [timeString, setTimeString] = useState(getTimeString());
-  const initializeTime = () => {
-    setTimeString(getTimeString());
-    setTimeout(initializeTime, 1000);
-  };
-  useEffect(initializeTime);
-  return <Time>{timeString}</Time>;
+  const [wakeLock, setWakeLock] = useState<any>(null);
+  useEffect(() => {
+    getWakeLock().then(setWakeLock);
+    return () => {
+      if (!wakeLock) return;
+      wakeLock.release();
+    };
+  }, []);
+  return <Clock />;
 };
 
 export default App;
