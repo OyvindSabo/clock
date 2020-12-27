@@ -7,9 +7,16 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Time = styled.span`
+const ChocolateInnerBar = styled.span`
+  background: ${Chocolate.Regular};
+  display: inline-block;
   margin-top: 50vh;
   transform: translate(0, -50%);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  padding: min(5vw, 25vh);
+`;
+
+const Time = styled.span`
   color: ${Chocolate.Regular};
   background: ${Chocolate.Dark};
   display: inline-block;
@@ -39,7 +46,9 @@ const Clock = () => {
   useEffect(initializeTime);
   return (
     <Wrapper>
-      <Time>{timeString}</Time>
+      <ChocolateInnerBar>
+        <Time>{timeString}</Time>
+      </ChocolateInnerBar>
     </Wrapper>
   );
 };
