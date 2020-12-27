@@ -13,7 +13,6 @@ const Time = styled.span`
   background: #0071b4;
   display: inline-block;
   font-size: min(15vw, 75vh);
-  height: min(15vw, 75vh);
   line-height: min(15vw, 75vh);
   font-weight: 100;
   font-family: monospace;
