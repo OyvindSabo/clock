@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Clock from "./Clock";
 import { useOnce } from "./utils";
 import "./App.css";
+import styled from "styled-components";
+import { Chocolate } from "./colors";
 
 const getWakeLockSentinel = async () => {
   try {
@@ -16,6 +18,11 @@ const getWakeLockSentinel = async () => {
     return null;
   }
 };
+
+const Wrapper = styled.div`
+  background: ${Chocolate.Regular};
+  height: 100vh;
+`;
 
 const App = () => {
   const [wakeLockSentinel, setWakeLockSentinel] = useState<WakeLockSentinel | null>(null);
@@ -39,7 +46,11 @@ const App = () => {
     };
   });
 
-  return <Clock />;
+  return (
+    <Wrapper>
+      <Clock />;
+    </Wrapper>
+  );
 };
 
 export default App;
