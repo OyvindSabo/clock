@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import "./App.css";
 
 const Time = styled.div`
+  color: white;
   font-size: min(25vw, 100vh);
   text-align: center;
   line-height: 100vh;
 `;
 
 const getTimeString = () => {
-  return new Date().toLocaleTimeString('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
+  return new Date().toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
   });
 };
 
