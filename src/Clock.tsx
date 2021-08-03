@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./Clock.css";
 
 const ClockWrapper = styled.div`
   position: fixed;
@@ -9,7 +8,7 @@ const ClockWrapper = styled.div`
   font-size: 50vmin;
   color: white;
   line-height: 100vh;
-  font-family: digital-clock-font;
+  font-family: "Digital Clock";
 `;
 
 const getNewTimeString = () => {

@@ -5,7 +5,6 @@ import Clock from "./Clock";
 const Wrapper = styled.div`
   background: black;
   height: 100vh;
-  font-family: digital-clock-font;
 `;
 
 const App = () => {

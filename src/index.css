@@ -9,3 +9,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+@font-face {
+  font-family: "Digital Clock";
+  src: url("./fonts/digital-7/digital-7.ttf");
+}
