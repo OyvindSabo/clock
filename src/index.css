@@ -12,5 +12,18 @@ code {
 
 @font-face {
   font-family: "Digital Clock";
-  src: url("./fonts/digital-7/digital-7.ttf");
+  src: url("./fonts/ds_digital/DS-DIGI.TTF") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Digital Clock";
+  src: url("./fonts/ds_digital/DS-DIGIT.TTF") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Digital Clock";
+  src: url("./fonts/ds_digital/DS-DIGII.TTF") format("truetype");
+  font-weight: italic;
 }

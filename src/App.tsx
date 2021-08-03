@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import WakeLock from "./WakeLock";
 import Clock from "./Clock";
 
 const Wrapper = styled.div`
@@ -10,7 +9,6 @@ const Wrapper = styled.div`
 const App = () => {
   return (
     <Wrapper>
-      <WakeLock />
       <Clock />;
     </Wrapper>
   );
