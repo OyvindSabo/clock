@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import Clock from "./Clock";
-import { useOnce } from "./utils";
-import "./App.css";
 import styled from "styled-components";
-import { Chocolate } from "./colors";
+import Clock from "./Clock";
+import { useState } from "react";
+import { useOnce } from "./utils";
 
 const getWakeLockSentinel = async () => {
   try {
@@ -20,8 +18,9 @@ const getWakeLockSentinel = async () => {
 };
 
 const Wrapper = styled.div`
-  background: ${Chocolate.Regular};
+  background: black;
   height: 100vh;
+  font-family: digital-clock-font;
 `;
 
 const App = () => {

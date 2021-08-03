@@ -1,36 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./App.css";
-import { Chocolate } from "./colors";
+import "./Clock.css";
 
-const Wrapper = styled.div`
+const ClockWrapper = styled.div`
+  position: fixed;
+  width: 100%;
   text-align: center;
+  font-size: 50vmin;
+  color: white;
+  line-height: 100vh;
+  font-family: digital-clock-font;
 `;
 
-const ChocolateInnerBar = styled.span`
-  background: ${Chocolate.Regular};
-  display: inline-block;
-  margin-top: 50vh;
-  transform: translate(0, -50%);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  padding: min(5vw, 25vh);
-`;
-
-const Time = styled.span`
-  color: ${Chocolate.Regular};
-  background: ${Chocolate.Dark};
-  display: inline-block;
-  font-size: min(15vw, 75vh);
-  line-height: min(15vw, 75vh);
-  font-weight: 100;
-  font-family: monospace;
-  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.2);
-  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  padding: min(5vw, 25vh);
-`;
-
-const getTimeString = () => {
+const getNewTimeString = () => {
   return new Date().toLocaleTimeString("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
@@ -38,19 +20,13 @@ const getTimeString = () => {
 };
 
 const Clock = () => {
-  const [timeString, setTimeString] = useState(getTimeString());
+  const [timeString, setTimeString] = useState(getNewTimeString());
   const initializeTime = () => {
-    setTimeString(getTimeString());
+    setTimeString(getNewTimeString());
     setTimeout(initializeTime, 1000);
   };
   useEffect(initializeTime);
-  return (
-    <Wrapper>
-      <ChocolateInnerBar>
-        <Time>{timeString}</Time>
-      </ChocolateInnerBar>
-    </Wrapper>
-  );
+  return <ClockWrapper>{timeString}</ClockWrapper>;
 };
 
 export default Clock;
