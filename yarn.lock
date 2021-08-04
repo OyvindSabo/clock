@@ -9740,6 +9740,13 @@ schema-utils@^3.0.0:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
+screen-wake-lock@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/screen-wake-lock/-/screen-wake-lock-0.1.2.tgz#10aa5800fc9a59c766d49a59315643dd5a98bfd5"
+  integrity sha512-r310YP2QscY7LypBWq1N3XKJ4dJqyyowjY7/nmef6MzN64GlrvrAL6j9163uz+ZSalsxZ3y7OzPhlGRvtCNYXQ==
+  dependencies:
+    react "^17.0.1"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"

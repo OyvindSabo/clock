@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import WakeLock from "./WakeLock";
+import ScreenWakeLock from "screen-wake-lock";
 
 ReactDOM.render(
   <React.StrictMode>
-    <WakeLock />
+    <ScreenWakeLock />
     <App />
   </React.StrictMode>,
   document.getElementById("root")
